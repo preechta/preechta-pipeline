@@ -1,4 +1,5 @@
-name: DEV-Tutorial BEDeploy
+name: DEV - Tutorial BE Deploy
+
 on:
   repository_dispatch:
     types: [preechta-tutorial-backend-cd-dev]
@@ -8,20 +9,20 @@ on:
         description: "Repository branch or tag"
         required: true
         default: "develop"
-  env:
-    REPOSITORY: "preechta/preechta-tutorial-backend"
-    GITREF: ${{ github.event_name == 'repository_dispatch' && 'develop' || github.event.inputs.ref }}
-    ARTIFACT_NAME: "artifact-tutorial-be-0.0.1-snapshot"
-    APP_RESOURCE_NAME: app-user24-az-<region>-dev-001
-  
-  jobs:
-      build-app-service:
-        name: Build
-        runs-on: ubuntu-latest
-        environment:
-        name: dev
 
-  steps:
+env:
+  REPOSITORY: "preechta/preechta-tutorial-backend"
+  GITREF: ${{ github.event_name == 'repository_dispatch' && 'develop' || github.event.inputs.ref }}
+  ARTIFACT_NAME: "artifact-tutorial-be-0.0.1-snapshot"
+  APP_RESOURCE_NAME: app-user24-az-usw3-dev-001
+
+jobs:
+  build-app-service:
+    name: Build
+    runs-on: ubuntu-latest
+    environment:
+      name: dev
+    steps:
     - name: "Checkout project"
       uses: actions/checkout@v2
       with:
@@ -48,4 +49,3 @@ on:
       with:
         name: ${{ env.ARTIFACT_NAME }}
         path: '${{ github.workspace }}/Tutorial.Api/bin/Release/net6.0/${{ env.ARTIFACT_NAME }}.tar.gz'
-
