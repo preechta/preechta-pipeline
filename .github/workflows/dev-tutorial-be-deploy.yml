@@ -1,4 +1,4 @@
-name: DEV-TutorialBEDeploy
+name: DEV-Tutorial BEDeploy
 on:
   repository_dispatch:
     types: [preechta-tutorial-backend-cd-dev]
