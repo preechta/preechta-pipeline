@@ -6,7 +6,7 @@ on:
 jobs:
   set-configuration:
     name: set appservice configuration
-    runs-on: [ self-hosted, user24-sbx, vm-user24SelfHost-az-usw3-sbx-001 ]
+    runs-on: [ self-hosted, tutorial-be-dev, vm-user24SelfHost-az-usw3-sbx-001 ]
     environment: dev
     steps:
     - name: Login via Azure CLI
